@@ -4,20 +4,23 @@ import 'card.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final appTitle = 'Card Layout Demo';
+  final List<String> titleList = [
+    'Card Layout Demo',
+    'Another Card Layout Demo',
+  ];
+  final bool showFirstLayout = false;
 
   @override
   Widget build(BuildContext context) {
+    final _title = showFirstLayout ? titleList.first : titleList.last;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
-      title: appTitle,
+      title: _title,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyCardDemoPage(title: appTitle),
+      home: CardDemoPage(title: _title),
     );
   }
 }
-
-
