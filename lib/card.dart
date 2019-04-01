@@ -47,18 +47,9 @@ class CardDemoPage extends StatelessWidget {
     );
     return ListTile(
       leading: (icon != null && icon is Icon) ? icon : null,
-      title: content != null
-          ? Text(
-              content,
-              style: _myContentStyle,
-            )
-          : null,
-      subtitle: subContent != null
-          ? Text(
-              subContent,
-              style: _myContentStyle,
-            )
-          : null,
+      title: content != null ? Text(content, style: _myContentStyle) : null,
+      subtitle:
+          subContent != null ? Text(subContent, style: _myContentStyle) : null,
     );
   }
 
@@ -78,34 +69,33 @@ class CardDemoPage extends StatelessWidget {
             Stack(
               children: <Widget>[
                 Positioned(
-                  child: Image.asset(
-                    destination.assetName,
-                    fit: BoxFit.cover,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Image.asset(
+                      destination.assetName,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Positioned(
-                  bottom: 16.0,
-                  left: 16.0,
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      destination.title,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontStyle: FontStyle.italic),
-                    ),
+                  bottom: 20.0,
+                  left: 20.0,
+                  child: Text(
+                    destination.title,
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                        fontStyle: FontStyle.italic),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 5),
               child: Text(
                 destination.description,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 8,
                   color: Colors.grey,
                 ),
               ),
