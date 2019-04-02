@@ -52,9 +52,7 @@ class VacationPage extends StatelessWidget {
   Widget _buildBigPicture() {
     return Image.asset(
       'images/Lake.jpg',
-      width: 600,
-      height: 300,
-      fit: BoxFit.cover,
+      fit: BoxFit.scaleDown,
     );
   }
 
