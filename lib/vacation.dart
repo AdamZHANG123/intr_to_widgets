@@ -138,8 +138,6 @@ class _FavoriteNumberState extends State<FavoriteNumber> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -158,11 +156,19 @@ class _FavoriteNumberState extends State<FavoriteNumber> {
                 color: alreadyFavored ? Colors.yellow[700] : Colors.grey,
                 size: 32,
               ),
-              Text(
-                number.toString(),
-                style: TextStyle(
-                  fontSize: 16,
-                  color: alreadyFavored ? Colors.yellow[700] : Colors.grey,
+              // Put the Text in a SizedBox and set the width can prevent the
+              // discernible "jump" when the text changes between the values of
+              // 40 and 41. A jump would otherwise occur because those values
+              // have different widths.
+              // Change the font size to a monospace font could do the trick as well.
+              SizedBox(
+                width: 25,
+                child: Text(
+                  number.toString(),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: alreadyFavored ? Colors.yellow[700] : Colors.grey,
+                  ),
                 ),
               ),
             ],
@@ -172,4 +178,3 @@ class _FavoriteNumberState extends State<FavoriteNumber> {
     );
   }
 }
-
