@@ -50,7 +50,11 @@ class _OpacityTestPageState extends State<OpacityTestPage> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 8,
+            ),
             Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
               width: 120,
               child: RaisedButton(
                 child: Text(_btnText),

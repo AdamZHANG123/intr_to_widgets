@@ -37,7 +37,7 @@ class VacationPage extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: <Widget>[
-                  _buildIntrInfoTile(),
+                  _buildIntroduceInfoTile(),
                   _buildBtnBar(),
                   _buildDetailedIntr(),
                 ],
@@ -56,7 +56,7 @@ class VacationPage extends StatelessWidget {
     );
   }
 
-  Widget _buildIntrInfoTile() {
+  Widget _buildIntroduceInfoTile() {
     return ListTile(
       title: Text(
         'Oeschinen Lake Campground',
@@ -72,16 +72,7 @@ class VacationPage extends StatelessWidget {
           color: Colors.grey,
         ),
       ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(
-            Icons.star,
-            color: Colors.red,
-          ),
-          Text('41'),
-        ],
-      ),
+      trailing: FavoriteNumber(),
     );
   }
 
@@ -130,3 +121,55 @@ class VacationPage extends StatelessWidget {
     );
   }
 }
+
+class FavoriteNumber extends StatefulWidget {
+  @override
+  _FavoriteNumberState createState() => _FavoriteNumberState();
+}
+
+class _FavoriteNumberState extends State<FavoriteNumber> {
+  var number = 41;
+  var alreadyFavored = true;
+
+  void _iconTapped() {
+    setState(() {
+      alreadyFavored ? number-- : number++;
+      alreadyFavored = !alreadyFavored;
+    });
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _iconTapped,
+      child: Container(
+        constraints: BoxConstraints(
+          maxWidth: 80,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Icon(
+                alreadyFavored ? Icons.star : Icons.star_border,
+                color: alreadyFavored ? Colors.yellow[700] : Colors.grey,
+                size: 32,
+              ),
+              Text(
+                number.toString(),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: alreadyFavored ? Colors.yellow[700] : Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
