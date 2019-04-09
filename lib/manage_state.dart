@@ -9,7 +9,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: _appTitle,
       home: Scaffold(
+        drawer: SizedBox(
+          width: 200,
+          child: Drawer(
+            child: ListView(
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.person),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
+        ),
         appBar: AppBar(
+          
           title: Text(_appTitle),
         ),
         body: Center(
