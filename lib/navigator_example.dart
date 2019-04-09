@@ -1,60 +1,109 @@
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
-  final _appTitle = 'Navigator Example';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _appTitle,
-      home: MyHomePage(title: _appTitle),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  final String title;
-
-  MyHomePage({this.title});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('Home Page'),
       ),
-      body: Center(
-        child: RaisedButton(
-            child: Text('Push'),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return MyPage(title: 'My Page');
-                },
-              ));
-            }),
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 24,
+          horizontal: 12,
+        ),
+        child: ListView(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return MyFirstPage();
+                  },
+                ));
+              },
+              child: Text('Navigate to 1st Page'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return MySecondPage();
+                  },
+                ));
+              },
+              child: Text('Navigate to 2nd Page'),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class MyPage extends StatelessWidget {
-  final String title;
-
-  MyPage({this.title});
-
+class MyFirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('Page One'),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Pop'),
+      body: Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 24,
+        ),
+        child: ListView(
+          children: <Widget>[
+            Center(
+              child: Text('Click the button to return to homepage.'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Return to Homepage'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MySecondPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Page Two'),
+      ),
+      body: Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 24,
+        ),
+        child: ListView(
+          children: <Widget>[
+            Center(
+              child: Text('Click the button to return to homepage.'),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Return to Homepage'),
+            ),
+          ],
         ),
       ),
     );
