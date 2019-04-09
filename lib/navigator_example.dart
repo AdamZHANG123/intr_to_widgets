@@ -5,11 +5,39 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
+      routes: <String, WidgetBuilder>{
+        '/firstPage': (BuildContext context) => MyFirstPage(title: '1st Page'),
+        '/secondPage': (BuildContext context) =>
+            MySecondPage(title: '2nd Page'),
+      },
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool _showText;
+
+  Widget _showTextOrNot() {
+    if (_showText == null) {
+      return Center(
+        child: Text("You haven't pick yet."),
+      );
+    } else if (_showText) {
+      return Center(
+        child: Text('You clicked "Yes".'),
+      );
+    } else {
+      return Center(
+        child: Text('You clicked "No".'),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,24 +53,25 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             RaisedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return MyFirstPage();
-                  },
-                ));
+                Navigator.pushNamed(context, '/firstPage');
               },
               child: Text('Navigate to 1st Page'),
             ),
             RaisedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return MySecondPage();
-                  },
-                ));
+              onPressed: () async {
+                dynamic result =
+                    await Navigator.pushNamed(context, '/secondPage');
+                setState(() {
+                  if (result is bool) {
+                    _showText = result;
+                  } else {
+                    _showText = null;
+                  }
+                });
               },
               child: Text('Navigate to 2nd Page'),
             ),
+            _showTextOrNot(),
           ],
         ),
       ),
@@ -51,11 +80,15 @@ class MyHomePage extends StatelessWidget {
 }
 
 class MyFirstPage extends StatelessWidget {
+  final String title;
+
+  MyFirstPage({this.title});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page One'),
+        title: Text(title),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
@@ -81,11 +114,15 @@ class MyFirstPage extends StatelessWidget {
 }
 
 class MySecondPage extends StatelessWidget {
+  final String title;
+
+  MySecondPage({this.title});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Page Two'),
+        title: Text(title),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(
@@ -95,13 +132,28 @@ class MySecondPage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Center(
-              child: Text('Click the button to return to homepage.'),
+              child: Text(
+                'Do you want to show the text?',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
             ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Return to Homepage'),
+            Row(
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  child: Text('Yes'),
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  child: Text('No'),
+                ),
+              ],
             ),
           ],
         ),
