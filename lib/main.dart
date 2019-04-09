@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 //import 'vacation.dart';
 //import 'transform_example.dart';
 //import 'opacity_test.dart';
-import 'manage_state.dart';
+//import 'manage_state.dart';
+import 'navigator_example.dart';
 
 void main() => runApp(MyApp());
