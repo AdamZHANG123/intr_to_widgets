@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 // for different layout modules, import different dart files below.
 
 //import 'card.dart';
@@ -12,12 +10,7 @@ import 'package:flutter/material.dart';
 //import 'todos_another_navigator_example.dart';
 //import 'snack_bar.dart';
 
-
-
-
-
-
-
-
-import 'hero_animation.dart';
+//import 'hero_animation.dart';
+import 'http_get.dart';
+import 'package:flutter/material.dart';
 void main() => runApp(MyApp());

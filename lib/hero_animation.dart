@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('Home Page'),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
@@ -74,7 +74,7 @@ class AnotherPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('Another Page'),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
