@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
         onTap: (index) {
           setState(() {
             _tabIndex = index;
-            print(index);
           });
         },
       ),
